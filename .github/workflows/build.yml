@@ -11,5 +11,9 @@ jobs:
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
-      - run: poetry install
-      - run: poetry build
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          poetry install
+      - name: Build
+        run: poetry build
