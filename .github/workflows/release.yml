@@ -6,9 +6,19 @@ on:
       - "v*"
 
 jobs:
-  docker:
+  publish:
     runs-on: ubuntu-latest
-
+    env:
+      PYTHON_KEYRING_BACKEND: keyring.backends.null.Keyring
+      PYPI_TOKEN: ${{ secrets.PYPI_TOKEN }}
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
+      - name: Install dependencies
+        run: |
+          pip install poetry
+          poetry install
+      - name: Build
+        run: poetry build
+      - name: Publish
+        run: poetry publish --username __token__ --password $PYPI_TOKEN
