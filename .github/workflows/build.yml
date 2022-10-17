@@ -6,8 +6,10 @@ on:
       - "main"
 
 jobs:
-  docker:
+  build:
     runs-on: ubuntu-latest
+    env:
+      PYTHON_KEYRING_BACKEND: keyring.backends.null.Keyring
     steps:
       - uses: actions/checkout@v3
       - uses: actions/setup-python@v4
