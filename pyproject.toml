@@ -1,0 +1,23 @@
+[tool.poetry]
+name = "check-dkim"
+version = "0.1.0"
+description = "A simple CLI script to verify DKIM signatures on EML files"
+authors = ["Micah Lee <micah@micahflee.com>"]
+license = "GPLv3"
+readme = "README.md"
+packages = [{include = "check_dkim"}]
+
+[tool.poetry.dependencies]
+python = "^3.7"
+click = "*"
+dkimpy = "*"
+
+[tool.poetry.group.dev.dependencies]
+black = "*"
+
+[build-system]
+requires = ["poetry-core"]
+build-backend = "poetry.core.masonry.api"
+
+[tool.poetry.scripts]
+check-dkim = 'check_dkim:main'
